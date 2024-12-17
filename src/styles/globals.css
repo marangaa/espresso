@@ -1,0 +1,52 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
+    --primary: 270 50% 40%;
+    --primary-foreground: 0 0% 100%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+}
+
+@layer base {
+    body {
+        @apply antialiased bg-background text-foreground;
+        font-feature-settings: "salt" on, "ss01" on, "ss02" on;
+    }
+
+    /* Ensure proper contrast for text */
+    h1, h2, h3, h4, h5, h6 {
+        @apply text-foreground font-serif;
+        letter-spacing: -0.02em;
+    }
+
+    p {
+        @apply text-foreground/90 leading-relaxed;
+    }
+
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Enhanced focus styles */
+    a:focus-visible,
+    button:focus-visible {
+        @apply outline-none ring-2 ring-primary ring-offset-2;
+    }
+}
+
+@layer utilities {
+    /* Custom utility classes */
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .text-gradient {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60;
+    }
+}
