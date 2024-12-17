@@ -1,4 +1,15 @@
-// src/constants/content.ts
+type ProjectAlignment = 'left' | 'right';
+
+interface Project {
+    id: string;
+    title: string;
+    description: string;
+    category: string;
+    client: string;
+    year: string;
+    role: string;
+    alignment: ProjectAlignment;
+}
 
 export const SITE_CONFIG = {
     name: 'Studio AI',
@@ -37,7 +48,7 @@ export const NAVIGATION = [
     }
 ];
 
-export const PROJECTS = [
+export const PROJECTS: Project[] = [
     {
         id: 'neuromorphic-design-system',
         title: 'Neuromorphic Design System',
@@ -46,7 +57,7 @@ export const PROJECTS = [
         client: 'TechCorp Industries',
         year: '2024',
         role: 'Design System Architecture',
-        alignment: 'right'
+        alignment: 'right' as const
     },
     {
         id: 'synthetic-media-engine',
@@ -56,7 +67,7 @@ export const PROJECTS = [
         client: 'MediaTech Solutions',
         year: '2024',
         role: 'AI Development',
-        alignment: 'left'
+        alignment: 'left' as const
     },
     {
         id: 'cognitive-architecture',
@@ -66,6 +77,6 @@ export const PROJECTS = [
         client: 'Future Spaces Inc',
         year: '2024',
         role: 'System Design',
-        alignment: 'right'
+        alignment: 'right' as const
     }
-];
+] as const;

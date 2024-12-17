@@ -26,15 +26,31 @@ const HoverCard = ({
         stiffness: 200
     });
 
+    const glareBackground = useTransform(
+        mouseX,
+        [-0.5, 0.5],
+        [
+            'radial-gradient(circle at 0% 50%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%)',
+            'radial-gradient(circle at 100% 50%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%)'
+        ]
+    );
+    const glareOpacity = useTransform(mouseX, [-0.5, 0, 0.5], [1, 0, 1]);
+
+    const borderClipPath = useTransform(
+        mouseX,
+        [-0.5, 0.5],
+        ['inset(0% 50% 0% 0%)', 'inset(0% 0% 0% 50%)']
+    );
+
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const width = rect.width;
         const height = rect.height;
-        const mouseX = (e.clientX - rect.left) / width - 0.5;
-        const mouseY = (e.clientY - rect.top) / height - 0.5;
+        const x = (e.clientX - rect.left) / width - 0.5;
+        const y = (e.clientY - rect.top) / height - 0.5;
 
-        this.mouseX.set(mouseX);
-        this.mouseY.set(mouseY);
+        mouseX.set(x);
+        mouseY.set(y);
     };
 
     const handleMouseLeave = () => {
@@ -66,15 +82,8 @@ const HoverCard = ({
                     <motion.div
                         className="absolute inset-0 w-full h-full pointer-events-none"
                         style={{
-                            background: useTransform(
-                                mouseX,
-                                [-0.5, 0.5],
-                                [
-                                    'radial-gradient(circle at 0% 50%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%)',
-                                    'radial-gradient(circle at 100% 50%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%)'
-                                ]
-                            ),
-                            opacity: useTransform(mouseX, [-0.5, 0, 0.5], [1, 0, 1]),
+                            background: glareBackground,
+                            opacity: glareOpacity,
                         }}
                     />
                 )}
@@ -87,11 +96,7 @@ const HoverCard = ({
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         style={{
-                            clipPath: useTransform(
-                                mouseX,
-                                [-0.5, 0.5],
-                                ['inset(0% 50% 0% 0%)', 'inset(0% 0% 0% 50%)']
-                            ),
+                            clipPath: borderClipPath,
                         }}
                     />
                 )}

@@ -53,7 +53,7 @@ const FormField = React.forwardRef<
                 />
 
                 <Component
-                    ref={ref as any}
+                    ref={ref as React.Ref<HTMLInputElement & HTMLTextAreaElement>}
                     className={`
             w-full px-4 py-3 bg-white border transition-colors
             ${error ? 'border-red-500' : 'border-black/10'}

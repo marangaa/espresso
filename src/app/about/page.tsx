@@ -1,6 +1,7 @@
 'use client'
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, MotionValue } from 'framer-motion';
+import Image from 'next/image';
 import SectionWrapper from '@/components/home/SectionWrapper';
 import { TextRevealWithLine, CharacterReveal } from '@/components/interactive/TextReveal';
 import HoverCard from '@/components/interactive/HoverCard';
@@ -15,6 +16,25 @@ const StudioHero = () => {
     });
 
     const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, 200]));
+
+    const AnimatedLine = ({ index, scrollYProgress }: { index: number; scrollYProgress: MotionValue<number> }) => {
+        const scaleX = useTransform(
+            scrollYProgress,
+            [0, 1],
+            [1, 1 + (index % 2 ? 0.5 : -0.5)]
+        );
+
+        return (
+            <motion.div
+                className="absolute w-full h-px bg-white/10"
+                style={{
+                    top: `${index * 5}%`,
+                    left: 0,
+                    scaleX,
+                }}
+            />
+        );
+    };
 
     return (
         <div ref={containerRef} className="relative min-h-screen flex items-center">
@@ -31,19 +51,7 @@ const StudioHero = () => {
                     style={{ y }}
                 >
                     {[...Array(20)].map((_, i) => (
-                        <motion.div
-                            key={i}
-                            className="absolute w-full h-px bg-white/10"
-                            style={{
-                                top: `${i * 5}%`,
-                                left: 0,
-                                scaleX: useTransform(
-                                    scrollYProgress,
-                                    [0, 1],
-                                    [1, 1 + (i % 2 ? 0.5 : -0.5)]
-                                )
-                            }}
-                        />
+                        <AnimatedLine key={i} index={i} scrollYProgress={scrollYProgress} />
                     ))}
                 </motion.div>
             </motion.div>
@@ -189,10 +197,11 @@ const TeamSection = () => {
                                 transition={{ delay: index * 0.1 }}
                             >
                                 <div className="relative aspect-square overflow-hidden mb-4">
-                                    <img
+                                    <Image
                                         src={member.image}
                                         alt={member.name}
-                                        className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                                        fill
+                                        className="object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500"
                                     />
                                 </div>
                                 <h3 className="text-xl font-serif text-white">{member.name}</h3>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useTransform, MotionValue } from 'framer-motion';
 import { CharacterReveal } from '@/components/interactive/TextReveal';
 import TextReveal from '@/components/interactive/TextReveal';
 import MagneticButton from '@/components/interactive/MagneticButton';
@@ -18,6 +18,24 @@ const SplitHero = () => {
 
     const rotateX = useTransform(mouseY, [-300, 300], [5, -5]);
     const rotateY = useTransform(mouseX, [-300, 300], [-5, 5]);
+
+    const AnimatedLine = ({ index, mouseX }: { index: number; mouseX: MotionValue<number> }) => {
+        const scaleX = useTransform(
+            mouseX,
+            [-300, 300],
+            [0.8 + (index % 3) * 0.1, 1.2 - (index % 3) * 0.1]
+        );
+
+        return (
+            <motion.div
+                className="absolute left-0 w-full h-[1px] bg-white/20"
+                style={{
+                    top: `${(index + 1) * 5}%`,
+                    scaleX,
+                }}
+            />
+        );
+    };
 
     return (
         <section className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
@@ -55,7 +73,7 @@ const SplitHero = () => {
                         <TextReveal delay={0.8}>
                             <p className="text-lg md:text-xl text-white/80 max-w-md">
                                 We shape artificial intelligence into meaningful experiences
-                                that push the boundaries of what's possible.
+                                that push the boundaries of what&apos;s possible.
                             </p>
                         </TextReveal>
                     </div>
@@ -82,18 +100,7 @@ const SplitHero = () => {
                         transition={{ duration: 1, delay: 1 }}
                     >
                         {[...Array(20)].map((_, i) => (
-                            <motion.div
-                                key={i}
-                                className="absolute left-0 w-full h-[1px] bg-white/20"
-                                style={{
-                                    top: `${(i + 1) * 5}%`,
-                                    scaleX: useTransform(
-                                        mouseX,
-                                        [-300, 300],
-                                        [0.8 + (i % 3) * 0.1, 1.2 - (i % 3) * 0.1]
-                                    )
-                                }}
-                            />
+                            <AnimatedLine key={i} index={i} mouseX={mouseX} />
                         ))}
                     </motion.div>
                 </div>

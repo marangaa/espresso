@@ -1,9 +1,25 @@
 import React, { useRef } from 'react';
+import Image from 'next/image';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { PROJECTS } from '@/constants/content';
 
-const ProjectCard = ({ project, index }) => {
+interface Project {
+    id: string;
+    title: string;
+    description: string;
+    category: string;
+    client: string;
+    year: string;
+    role: string;
+    alignment: 'left' | 'right';
+}
+
+interface ProjectCardProps {
+    project: Project;
+}
+
+const ProjectCard = ({ project }: ProjectCardProps) => {
     const cardRef = useRef(null);
 
     const { scrollYProgress } = useScroll({
@@ -88,10 +104,12 @@ const ProjectCard = ({ project, index }) => {
                 transition={{ scale: { duration: 0.3 } }}
             >
                 <div className="relative h-full w-full">
-                    <img
+                    <Image
                         src={`/api/placeholder/800/600`}
                         alt={project.title}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                     />
 
                     {/* Overlay effects */}
@@ -138,8 +156,8 @@ const ProjectsGrid = () => {
                 </header>
 
                 <div className="space-y-32 lg:space-y-48">
-                    {PROJECTS.map((project, index) => (
-                        <ProjectCard key={project.id} project={project} index={index} />
+                    {PROJECTS.map((project) => (
+                        <ProjectCard key={project.id} project={project} />
                     ))}
                 </div>
             </div>

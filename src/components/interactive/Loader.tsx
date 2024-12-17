@@ -33,7 +33,7 @@ const Loader = () => {
 };
 
 // Loading wrapper component
-export const WithLoading = ({ children, isLoading }) => {
+export const WithLoading = ({ children, isLoading }: { children: React.ReactNode, isLoading: boolean }) => {
     return (
         <>
             <AnimatePresence>
