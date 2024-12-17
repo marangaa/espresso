@@ -73,7 +73,7 @@ const StudioHero = () => {
                     <TextReveal delay={0.6}>
                         <p className="text-xl text-white/60 mt-8">
                             We are a team of designers, developers, and AI specialists
-                            pushing the boundaries of what's possible in digital spaces.
+                            pushing the boundaries of what&apos;s possible in digital spaces.
                         </p>
                     </TextReveal>
                 </div>
@@ -216,7 +216,7 @@ const JoinSection = () => {
 
                 <TextReveal delay={0.2}>
                     <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto">
-                        We're always looking for talented individuals who share our passion
+                        We&apos;re always looking for talented individuals who share our passion
                         for innovation and creativity.
                     </p>
                 </TextReveal>

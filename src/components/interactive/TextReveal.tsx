@@ -7,6 +7,12 @@ interface TextRevealProps {
     delay?: number;
 }
 
+interface CharacterRevealProps {
+    text: string;
+    className?: string;
+    delay?: number;
+}
+
 const TextReveal = ({ children, className = '', delay = 0 }: TextRevealProps) => {
     return (
         <div className="relative overflow-hidden">
@@ -51,7 +57,7 @@ export const TextRevealWithLine = ({ children, className = '', delay = 0 }: Text
 };
 
 // Character by character reveal
-export const CharacterReveal = ({ text, className = '', delay = 0 }: { text: string } & TextRevealProps) => {
+export const CharacterReveal = ({ text, className = '', delay = 0 }: CharacterRevealProps) => {
     const characters = text.split('');
 
     return (

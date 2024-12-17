@@ -8,20 +8,37 @@ import SectionWrapper from '@/components/home/SectionWrapper';
 import HoverCard from '@/components/interactive/HoverCard';
 import MagneticButton from '@/components/interactive/MagneticButton';
 
-const categories = [
-    'All', 'AI & Technology', 'Design Thinking', 'Innovation', 'Culture'
-];
-
+// Define types
 interface Article {
     title: string;
-    category: string;
+    category: ArticleCategory;
     excerpt: string;
     image: string;
     date: string;
     readingTime: number;
 }
 
-const FeaturedArticle = ({ article }: { article: Article }) => {
+type ArticleCategory = 'All' | 'AI & Technology' | 'Design Thinking' | 'Innovation' | 'Culture';
+
+interface CategoryFilterProps {
+    activeCategory: ArticleCategory;
+    setActiveCategory: (category: ArticleCategory) => void;
+}
+
+interface ArticleCardProps {
+    article: Article;
+}
+
+// Define categories array
+const categories: ArticleCategory[] = [
+    'All',
+    'AI & Technology',
+    'Design Thinking',
+    'Innovation',
+    'Culture'
+];
+
+const FeaturedArticle: React.FC<{ article: Article }> = ({ article }) => {
     const { scrollYProgress } = useScroll();
     const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, 200]));
 
@@ -82,29 +99,27 @@ const FeaturedArticle = ({ article }: { article: Article }) => {
     );
 };
 
-const CategoryFilter = ({ activeCategory, setActiveCategory }) => {
-    return (
-        <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar">
-            {categories.map((category) => (
-                <motion.button
-                    key={category}
-                    className={`px-4 py-2 text-sm font-mono whitespace-nowrap ${
-                        activeCategory === category
-                            ? 'bg-black text-white'
-                            : 'bg-transparent text-black hover:bg-black/5'
-                    }`}
-                    onClick={() => setActiveCategory(category)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    {category}
-                </motion.button>
-            ))}
-        </div>
-    );
-};
+const CategoryFilter: React.FC<CategoryFilterProps> = ({ activeCategory, setActiveCategory }) => (
+    <div className="flex gap-4 overflow-x-auto pb-4 hide-scrollbar">
+        {categories.map((category) => (
+            <motion.button
+                key={category}
+                className={`px-4 py-2 text-sm font-mono whitespace-nowrap ${
+                    activeCategory === category
+                        ? 'bg-black text-white'
+                        : 'bg-transparent text-black hover:bg-black/5'
+                }`}
+                onClick={() => setActiveCategory(category)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+            >
+                {category}
+            </motion.button>
+        ))}
+    </div>
+);
 
-const ArticleCard = ({ article }) => {
+const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
     return (
         <HoverCard className="group">
             <div className="space-y-4">
@@ -179,8 +194,8 @@ const NewsletterSection = () => {
 };
 
 export default function InsightsPage() {
-    const [activeCategory, setActiveCategory] = useState('All');
-    const [articles] = useState([
+    const [activeCategory, setActiveCategory] = useState<ArticleCategory>('All');
+    const [articles] = useState<Article[]>([
         {
             title: 'The Future of AI Interface Design',
             category: 'AI & Technology',
@@ -189,7 +204,31 @@ export default function InsightsPage() {
             date: 'Mar 15, 2024',
             readingTime: 5
         },
-        // Add more articles...
+        
+        {
+            title: 'Design Thinking in the Age of AI',
+            category: 'Design Thinking',
+            excerpt: 'How design thinking principles are evolving to incorporate artificial intelligence.',
+            image: '/api/placeholder/800/600',
+            date: 'Mar 10, 2024',
+            readingTime: 6
+        },
+        {
+            title: 'Innovating for a Sustainable Future',
+            category: 'Innovation',
+            excerpt: 'Exploring how innovation can drive sustainable solutions for a better world.',
+            image: '/api/placeholder/800/600',
+            date: 'Mar 5, 2024',
+            readingTime: 7
+        },
+        {
+            title: 'Cultivating a Creative Culture',
+            category: 'Culture',
+            excerpt: 'How to foster a culture of creativity and innovation within your organization.',
+            image: '/api/placeholder/800/600',
+            date: 'Mar 1, 2024',
+            readingTime: 8
+        }
     ]);
 
     return (

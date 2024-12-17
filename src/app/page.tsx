@@ -10,7 +10,8 @@ import TextReveal from '@/components/interactive/TextReveal';
 import SectionWrapper from '@/components/home/SectionWrapper';
 import HoverCard from '@/components/interactive/HoverCard';
 import MagneticButton from '@/components/interactive/MagneticButton';
-import Lenis from 'lenis'
+import Lenis from 'lenis';
+
 
 const ProcessSection = () => {
     const { scrollYProgress } = useScroll();
@@ -296,9 +297,8 @@ export default function HomePage() {
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
+            syncTouch: false,
             touchMultiplier: 2,
-            wheelMultiplier: 1,
-            lerp: 0.1,
         });
 
         function raf(time: number) {

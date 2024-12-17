@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
-const PageTransition = ({ children }) => {
+const PageTransition = ({ children }: PropsWithChildren) => {
     const pathname = usePathname();
 
     return (

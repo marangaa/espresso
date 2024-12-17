@@ -15,14 +15,17 @@ const contactSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
+interface FormFieldProps extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+    label: string;
+    error?: string;
+    textarea?: boolean;
+}
+
+type SubmitStatus = 'success' | 'error' | null;
+
 const FormField = React.forwardRef<
     HTMLInputElement | HTMLTextAreaElement,
-    {
-        label: string;
-        error?: string;
-        textarea?: boolean;
-        [key: string]: any;
-    }
+    FormFieldProps
 >(({ label, error, textarea = false, ...props }, ref) => {
     const [isFocused, setIsFocused] = useState(false);
     const Component = textarea ? 'textarea' : 'input';
@@ -85,7 +88,7 @@ FormField.displayName = 'FormField';
 
 export default function ContactForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
+    const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(null);
 
     const {
         register,

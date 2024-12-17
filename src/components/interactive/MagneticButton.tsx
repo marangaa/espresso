@@ -1,19 +1,20 @@
 import React, { useRef, useState } from 'react';
 import { motion, useSpring, useTransform } from 'framer-motion';
 
-interface MagneticButtonProps {
+// Update the MagneticButtonProps interface
+interface MagneticButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     className?: string;
     strength?: number;
-    onClick?: () => void;
+    // Removed onClick since it's included in ButtonHTMLAttributes
 }
 
 const MagneticButton = ({
-                            children,
-                            className = '',
-                            strength = 20,
-                            onClick
-                        }: MagneticButtonProps) => {
+    children,
+    className = '',
+    strength = 20,
+    ...props
+}: MagneticButtonProps) => {
     const buttonRef = useRef<HTMLButtonElement>(null);
     const [isHovered, setIsHovered] = useState(false);
 
@@ -55,20 +56,13 @@ const MagneticButton = ({
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             onMouseEnter={() => setIsHovered(true)}
-            onClick={onClick}
-            style={{
-                x,
-                y,
-            }}
+            style={{ x, y }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
+            onClick={props.onClick}
+            disabled={props.disabled}
         >
-            <motion.div
-                style={{
-                    rotateX,
-                    rotateY,
-                }}
-            >
+            <motion.div style={{ rotateX, rotateY }}>
                 {children}
             </motion.div>
 
