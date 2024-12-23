@@ -12,20 +12,20 @@ const projects: Project[] = [
         year: '2024',
         client: 'TechCorp Industries',
         thumbnail: {
-            url: '/api/placeholder/800/600',
+            url: 'https://picsum.photos/id/237/800/600',
             alt: 'Neuromorphic Design System thumbnail',
             width: 800,
             height: 600
         },
         heroImage: {
-            url: '/api/placeholder/1920/1080',
+            url: 'https://picsum.photos/id/1/1920/1080',
             alt: 'Neuromorphic Design System hero',
             width: 1920,
             height: 1080
         },
         images: [
             {
-                url: '/api/placeholder/1920/1080',
+                url: 'https://picsum.photos/id/10/1920/1080',
                 alt: 'Project detail 1',
                 width: 1920,
                 height: 1080
@@ -74,20 +74,20 @@ const projects: Project[] = [
         year: '2024',
         client: 'MediaTech Solutions',
         thumbnail: {
-            url: '/api/placeholder/800/600',
+            url: 'https://picsum.photos/id/101/800/600',
             alt: 'Synthetic Media Engine thumbnail',
             width: 800,
             height: 600
         },
         heroImage: {
-            url: '/api/placeholder/1920/1080',
+            url: 'https://picsum.photos/id/102/1920/1080',
             alt: 'Synthetic Media Engine hero',
             width: 1920,
             height: 1080
         },
         images: [
             {
-                url: '/api/placeholder/1920/1080',
+                url: 'https://picsum.photos/id/20/1920/1080',
                 alt: 'Project detail 1',
                 width: 1920,
                 height: 1080
@@ -136,20 +136,20 @@ const projects: Project[] = [
         year: '2024',
         client: 'Future Spaces Inc',
         thumbnail: {
-            url: '/api/placeholder/800/600',
+            url: 'https://picsum.photos/id/201/800/600',
             alt: 'Cognitive Architecture thumbnail',
             width: 800,
             height: 600
         },
         heroImage: {
-            url: '/api/placeholder/1920/1080',
+            url: 'https://picsum.photos/id/202/1920/1080',
             alt: 'Cognitive Architecture hero',
             width: 1920,
             height: 1080
         },
         images: [
             {
-                url: '/api/placeholder/1920/1080',
+                url: 'https://picsum.photos/id/30/1920/1080',
                 alt: 'Project detail 1',
                 width: 1920,
                 height: 1080

@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { PROJECTS } from '@/constants/content';
 
+
 interface Project {
     id: string;
     title: string;
@@ -105,7 +106,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             >
                 <div className="relative h-full w-full">
                     <Image
-                        src={`/api/placeholder/800/600`}
+                        src={`https://picsum.photos/id/32/800/600`}
                         alt={project.title}
                         fill
                         className="object-cover"
