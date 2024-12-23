@@ -12,6 +12,11 @@ const playfair = Playfair_Display({
     variable: '--font-playfair'
 });
 
+export const metadata = {
+    title: 'Studio AI',
+    description: 'Digital experiences crafted with intelligence',
+};
+
 export default function RootLayout({
     children,
 }: {
@@ -19,7 +24,10 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-            <body>
+            {/* Adding overflow-x-hidden prevents horizontal scrolling during page transitions */}
+            {/* Adding min-h-screen ensures the page always fills the viewport height */}
+            {/* Adding antialiased improves font rendering */}
+            <body className="overflow-x-hidden min-h-screen antialiased">
                 <ClientLayout>
                     {children}
                 </ClientLayout>

@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import CustomCursor from '@/components/interactive/CustomCursor';
 import Navigation from '@/components/layout/Navigation';
-import PageTransition from '@/components/interactive/PageTransition';
 import { WithLoading } from '@/components/interactive/Loader';
 
 export default function ClientLayout({
@@ -25,16 +24,23 @@ export default function ClientLayout({
             setShowCustomCursor(!isTouchDevice && isLargeScreen);
         };
 
+        // Run initial check
         checkDevice();
-        window.addEventListener('load', checkDevice);
-        window.addEventListener('resize', checkDevice);
+
+        // Set up event listeners
+        const handleResize = () => {
+            checkDevice();
+        };
+
+        window.addEventListener('resize', handleResize);
         
+        // Initial loading timeout
         const timer = setTimeout(() => {
             setIsLoading(false);
         }, 1500);
 
         return () => {
-            window.removeEventListener('resize', checkDevice);
+            window.removeEventListener('resize', handleResize);
             clearTimeout(timer);
         };
     }, []);
@@ -44,11 +50,7 @@ export default function ClientLayout({
             {showCustomCursor && <CustomCursor />}
             <Navigation />
             <WithLoading isLoading={isLoading}>
-                <PageTransition>
-                    <main className="relative">
-                        {children}
-                    </main>
-                </PageTransition>
+               {children}
             </WithLoading>
         </>
     );

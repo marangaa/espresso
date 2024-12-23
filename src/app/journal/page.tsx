@@ -199,7 +199,7 @@ export default function InsightsPage() {
             title: 'The Future of AI Interface Design',
             category: 'AI & Technology',
             excerpt: 'Exploring how artificial intelligence is reshaping the way we interact with digital interfaces.',
-            image: '/api/placeholder/800/600',
+            image: 'https://picsum.photos/id/1/200/300',
             date: 'Mar 15, 2024',
             readingTime: 5
         },
@@ -208,7 +208,7 @@ export default function InsightsPage() {
             title: 'Design Thinking in the Age of AI',
             category: 'Design Thinking',
             excerpt: 'How design thinking principles are evolving to incorporate artificial intelligence.',
-            image: '/api/placeholder/800/600',
+            image: 'https://picsum.photos/id/102/200/300',
             date: 'Mar 10, 2024',
             readingTime: 6
         },
@@ -216,7 +216,7 @@ export default function InsightsPage() {
             title: 'Innovating for a Sustainable Future',
             category: 'Innovation',
             excerpt: 'Exploring how innovation can drive sustainable solutions for a better world.',
-            image: '/api/placeholder/800/600',
+            image: 'https://picsum.photos/id/37/200/300',
             date: 'Mar 5, 2024',
             readingTime: 7
         },
@@ -224,7 +224,7 @@ export default function InsightsPage() {
             title: 'Cultivating a Creative Culture',
             category: 'Culture',
             excerpt: 'How to foster a culture of creativity and innovation within your organization.',
-            image: '/api/placeholder/800/600',
+            image: 'https://picsum.photos/id/13/200/300',
             date: 'Mar 1, 2024',
             readingTime: 8
         }

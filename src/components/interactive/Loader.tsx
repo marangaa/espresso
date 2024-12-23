@@ -1,15 +1,17 @@
+'use client'
+
 import React from 'react';
-import {AnimatePresence, motion} from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Loader = () => {
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-background z-50">
-            <motion.div
-                className="relative w-24 h-24"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-            >
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 flex items-center justify-center bg-background z-[70]"
+        >
+            <div className="relative w-24 h-24">
                 {[...Array(3)].map((_, i) => (
                     <motion.div
                         key={i}
@@ -27,27 +29,18 @@ const Loader = () => {
                         }}
                     />
                 ))}
-            </motion.div>
-        </div>
+            </div>
+        </motion.div>
     );
 };
 
-// Loading wrapper component
 export const WithLoading = ({ children, isLoading }: { children: React.ReactNode, isLoading: boolean }) => {
     return (
         <>
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
                 {isLoading && <Loader />}
             </AnimatePresence>
-            <motion.div
-                animate={{
-                    opacity: isLoading ? 0.3 : 1,
-                    filter: isLoading ? 'blur(10px)' : 'blur(0px)',
-                }}
-                transition={{ duration: 0.4 }}
-            >
-                {children}
-            </motion.div>
+            {children}
         </>
     );
 };
