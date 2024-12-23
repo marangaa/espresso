@@ -2,7 +2,8 @@ export type ProjectCategory =
     | 'AI Interface'
     | 'Spatial Computing'
     | 'Machine Learning'
-    | 'Data Visualization';
+    | 'Data Visualization'
+    | 'Content Generation'
 
 export interface ProjectImage {
     url: string;

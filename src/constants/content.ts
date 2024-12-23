@@ -78,5 +78,35 @@ export const PROJECTS: Project[] = [
         year: '2024',
         role: 'System Design',
         alignment: 'right' as const
+    },
+    {
+        id: 'data-visualization-suite',
+        title: 'Data Visualization Suite',
+        description: 'Transforming data into interactive narratives',
+        category: 'Data Visualization',
+        client: 'Insight Analytics',
+        year: '2024',
+        role: 'Frontend Development',
+        alignment: 'left' as const
+    },
+    {
+        id: 'machine-learning-platform',
+        title: 'Machine Learning Platform',
+        description: 'Empowering developers with AI tools',
+        category: 'Machine Learning',
+        client: 'CodeCraft Labs',
+        year: '2024',
+        role: 'Backend Development',
+        alignment: 'right' as const
+    },
+    {
+        id: 'ai-ethics-framework',
+        title: 'AI Ethics Framework',
+        description: 'Guiding principles for responsible AI',
+        category: 'AI Ethics',
+        client: 'Ethical AI Institute',
+        year: '2024',
+        role: 'Research & Development',
+        alignment: 'left' as const
     }
 ] as const;

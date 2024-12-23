@@ -8,7 +8,6 @@ import SectionWrapper from '@/components/home/SectionWrapper';
 import HoverCard from '@/components/interactive/HoverCard';
 import MagneticButton from '@/components/interactive/MagneticButton';
 
-// Define types
 interface Article {
     title: string;
     category: ArticleCategory;

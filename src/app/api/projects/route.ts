@@ -65,7 +65,120 @@ const projects: Project[] = [
             }
         }
     },
-    // Add more projects...
+    {
+        id: 'synthetic-media-engine',
+        slug: 'synthetic-media-engine',
+        title: 'Synthetic Media Engine',
+        description: 'Generated content that maintains human authenticity',
+        category: 'Content Generation',
+        year: '2024',
+        client: 'MediaTech Solutions',
+        thumbnail: {
+            url: '/api/placeholder/800/600',
+            alt: 'Synthetic Media Engine thumbnail',
+            width: 800,
+            height: 600
+        },
+        heroImage: {
+            url: '/api/placeholder/1920/1080',
+            alt: 'Synthetic Media Engine hero',
+            width: 1920,
+            height: 1080
+        },
+        images: [
+            {
+                url: '/api/placeholder/1920/1080',
+                alt: 'Project detail 1',
+                width: 1920,
+                height: 1080
+            },
+            {
+                url: '/api/placeholder/800/600',
+                alt: 'Project detail 2',
+                width: 800,
+                height: 600
+            }
+        ],
+        details: {
+            challenge: 'Creating a content generation system that could produce human-like content with minimal input.',
+            approach: 'We developed a deep learning model that could analyze and generate content based on a set of predefined parameters.',
+            solution: 'A synthetic media engine that could generate images, videos, and text that were indistinguishable from human-generated content.',
+            results: [
+                'Reduced content production time by 70%',
+                'Increased content quality by 50%',
+                'Improved content engagement by 40%'
+            ],
+            technologies: [
+                'PyTorch',
+                'GPT-3',
+                'OpenAI API',
+                'React'
+            ]
+        },
+        nextProject: {
+            id: 'cognitive-architecture',
+            slug: 'cognitive-architecture',
+            title: 'Cognitive Architecture',
+            thumbnail: {
+                url: '/api/placeholder/800/600',
+                alt: 'Cognitive Architecture thumbnail',
+                width: 800,
+                height: 600
+            }
+        }
+    },
+    {
+        id: 'cognitive-architecture',
+        slug: 'cognitive-architecture',
+        title: 'Cognitive Architecture',
+        description: "Building tomorrow's thinking spaces",
+        category: 'Spatial Computing',
+        year: '2024',
+        client: 'Future Spaces Inc',
+        thumbnail: {
+            url: '/api/placeholder/800/600',
+            alt: 'Cognitive Architecture thumbnail',
+            width: 800,
+            height: 600
+        },
+        heroImage: {
+            url: '/api/placeholder/1920/1080',
+            alt: 'Cognitive Architecture hero',
+            width: 1920,
+            height: 1080
+        },
+        images: [
+            {
+                url: '/api/placeholder/1920/1080',
+                alt: 'Project detail 1',
+                width: 1920,
+                height: 1080
+            },
+            {
+                url: '/api/placeholder/800/600',
+                alt: 'Project detail 2',
+                width: 800,
+                height: 600
+            }
+        ],
+        details: {
+            challenge: 'Creating a spatial computing system that could adapt to user needs and preferences in real-time.',
+            approach: 'We developed a modular architecture that could be customized based on user input and environmental conditions.',
+            solution: 'A cognitive architecture that could analyze user behavior and environmental data to create personalized spatial experiences.',
+            results: [
+                'Increased user satisfaction scores by 40%',
+                'Reduced energy consumption by 30%',
+                'Improved space utilization by 50%'
+            ],
+            technologies: [
+                'Unity',
+                'C#',
+                'Azure IoT',
+                'React'
+            ]
+        },
+    }
+    
 ];
 
 export async function GET(request: Request) {

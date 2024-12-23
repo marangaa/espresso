@@ -13,7 +13,7 @@ const navItems = [
   },
   {
     name: 'Studio',
-    href: '/about',
+    href: '/studio',
     description: 'Learn about our team'
   },
   {
