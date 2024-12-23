@@ -37,7 +37,7 @@ const StudioHero = () => {
     };
 
     return (
-        <div ref={containerRef} className="relative min-h-screen flex items-center">
+        <div ref={containerRef} className="relative min-h-[100svh] flex items-center">
             {/* Animated background */}
             <motion.div
                 className="absolute inset-0 bg-black"
@@ -57,29 +57,29 @@ const StudioHero = () => {
             </motion.div>
 
             {/* Content */}
-            <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32">
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-32">
                 <div className="max-w-3xl">
                     <TextReveal>
-            <span className="text-sm font-mono tracking-wider text-white/60">
-              Our Story
-            </span>
+                        <span className="text-sm font-mono tracking-wider text-white/60">
+                            Our Story
+                        </span>
                     </TextReveal>
 
-                    <div className="mt-4">
+                    <div className="mt-4 md:mt-6">
                         <CharacterReveal
                             text="Crafting the future"
-                            className="text-5xl lg:text-7xl font-serif text-white"
+                            className="text-4xl sm:text-5xl lg:text-7xl font-serif text-white"
                             delay={0.2}
                         />
                         <CharacterReveal
                             text="of digital experiences"
-                            className="text-5xl lg:text-7xl font-serif text-white mt-2"
+                            className="text-4xl sm:text-5xl lg:text-7xl font-serif text-white mt-2"
                             delay={0.4}
                         />
                     </div>
 
                     <TextReveal delay={0.6}>
-                        <p className="text-xl text-white/60 mt-8">
+                        <p className="text-lg md:text-xl text-white/60 mt-6 md:mt-8">
                             We are a team of designers, developers, and AI specialists
                             pushing the boundaries of what&apos;s possible in digital spaces.
                         </p>
@@ -111,12 +111,12 @@ const ValuesSection = () => {
     ];
 
     return (
-        <SectionWrapper className="py-32">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                    <div className="space-y-8">
+        <SectionWrapper className="py-16 md:py-32">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+                    <div className="space-y-6 md:space-y-8">
                         <TextRevealWithLine>
-                            <h2 className="text-4xl lg:text-5xl font-serif">Our Values</h2>
+                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif">Our Values</h2>
                         </TextRevealWithLine>
 
                         <TextReveal>
@@ -126,7 +126,7 @@ const ValuesSection = () => {
                         </TextReveal>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
                         {values.map((value, index) => (
                             <HoverCard
                                 key={value.title}
@@ -156,35 +156,35 @@ const TeamSection = () => {
         {
             name: 'Alex Chen',
             role: 'Creative Director',
-            image: '/api/placeholder/400/400'
+            image: `https://api.dicebear.com/9.x/lorelei/svg?seed=Felix`
         },
         {
             name: 'Sarah Wu',
             role: 'AI Lead',
-            image: '/api/placeholder/400/400'
+            image: `https://api.dicebear.com/9.x/avataaars/svg?seed=Felix`
         },
         {
             name: 'Marcus Kim',
             role: 'Design Lead',
-            image: '/api/placeholder/400/400'
+            image: `https://api.dicebear.com/9.x/adventurer/svg?seed=Felix`
         },
         {
             name: 'Julia Santos',
             role: 'Tech Lead',
-            image: '/api/placeholder/400/400'
+            image: `https://api.dicebear.com/9.x/micah/svg?seed=Felix`
         }
     ];
 
     return (
-        <SectionWrapper className="py-32 bg-black" colorScheme="dark">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <SectionWrapper className="py-16 md:py-32 bg-black" colorScheme="dark">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <TextRevealWithLine>
-                    <h2 className="text-4xl lg:text-5xl font-serif text-white mb-16">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white mb-8 md:mb-16">
                         Our Team
                     </h2>
                 </TextRevealWithLine>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                     {team.map((member, index) => (
                         <HoverCard
                             key={member.name}
@@ -196,7 +196,7 @@ const TeamSection = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.1 }}
                             >
-                                <div className="relative aspect-square overflow-hidden mb-4">
+                                <div className="relative aspect-[4/5] sm:aspect-square overflow-hidden mb-3 md:mb-4">
                                     <Image
                                         src={member.image}
                                         alt={member.name}
@@ -204,8 +204,8 @@ const TeamSection = () => {
                                         className="object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500"
                                     />
                                 </div>
-                                <h3 className="text-xl font-serif text-white">{member.name}</h3>
-                                <p className="text-white/60">{member.role}</p>
+                                <h3 className="text-base sm:text-xl font-serif text-white">{member.name}</h3>
+                                <p className="text-sm sm:text-base text-white/60">{member.role}</p>
                             </motion.div>
                         </HoverCard>
                     ))}
@@ -217,14 +217,14 @@ const TeamSection = () => {
 
 const JoinSection = () => {
     return (
-        <SectionWrapper className="py-32">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+        <SectionWrapper className="py-16 md:py-32">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <TextRevealWithLine>
-                    <h2 className="text-4xl lg:text-5xl font-serif">Join Our Team</h2>
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif">Join Our Team</h2>
                 </TextRevealWithLine>
 
                 <TextReveal delay={0.2}>
-                    <p className="text-xl text-muted-foreground mt-6 max-w-2xl mx-auto">
+                    <p className="text-lg md:text-xl text-muted-foreground mt-4 md:mt-6 max-w-2xl mx-auto">
                         We&apos;re always looking for talented individuals who share our passion
                         for innovation and creativity.
                     </p>
@@ -234,9 +234,9 @@ const JoinSection = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
-                    className="mt-12"
+                    className="mt-8 md:mt-12"
                 >
-                    <MagneticButton className="px-8 py-4 bg-black text-white text-lg">
+                    <MagneticButton className="px-6 sm:px-8 py-3 sm:py-4 bg-black text-white text-base sm:text-lg">
                         View Open Positions
                     </MagneticButton>
                 </motion.div>
