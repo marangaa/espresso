@@ -45,29 +45,31 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         <motion.article
             ref={cardRef}
             style={{ x, opacity }}
-            className={`relative grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 w-full lg:w-11/12 max-w-6xl mx-auto`}
+            className={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 w-full max-w-7xl mx-auto ${
+                project.alignment === 'right' ? 'lg:ml-0' : 'lg:mr-0'
+            }`}
             data-cursor-hover
         >
-            <div className={`space-y-4 sm:space-y-6 ${
-                project.alignment === 'right' ? 'lg:order-1' : ''
-            }`}>
-                <motion.span
-                    className="text-sm font-mono tracking-wider text-muted-foreground"
+            {/* Content */}
+            <div 
+                className={`space-y-6 px-4 sm:px-6 lg:px-8 flex flex-col justify-center ${
+                    project.alignment === 'right' ? 'lg:order-2' : 'lg:order-1'
+                }`}
+            >
+                <motion.div
+                    className="space-y-2"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    {project.category}
-                </motion.span>
+                    <span className="text-sm font-mono tracking-wider text-muted-foreground">
+                        {project.category}
+                    </span>
 
-                <motion.h2
-                    className="text-3xl sm:text-4xl lg:text-5xl font-serif leading-tight"
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                >
-                    {project.title}
-                </motion.h2>
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif leading-tight">
+                        {project.title}
+                    </h2>
+                </motion.div>
 
                 <motion.p
                     className="text-base sm:text-lg text-muted-foreground max-w-md"
@@ -78,43 +80,41 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                     {project.description}
                 </motion.p>
 
-                <motion.button
-                    className="group flex items-center space-x-3 text-base sm:text-lg"
+                <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    whileHover={{ x: 10 }}
                 >
-                    <span>View Project</span>
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transform transition-transform group-hover:translate-x-2" />
-                </motion.button>
+                    <button className="group inline-flex items-center space-x-3 text-base sm:text-lg hover:text-primary transition-colors">
+                        <span>View Project</span>
+                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transform transition-transform group-hover:translate-x-2" />
+                    </button>
+                </motion.div>
             </div>
 
+            {/* Image */}
             <motion.div
-                className={`relative aspect-[4/3] lg:aspect-auto lg:h-[60vh] ${
-                    project.alignment === 'right' ? '' : 'lg:order-first'
+                className={`relative aspect-[16/9] lg:aspect-auto lg:h-[70vh] overflow-hidden ${
+                    project.alignment === 'right' ? 'lg:order-1' : 'lg:order-2'
                 }`}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.02 }}
-                transition={{ scale: { duration: 0.3 } }}
             >
-                <div className="relative h-full w-full">
-                    <Image
-                        src={`https://picsum.photos/id/32/800/600`}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-
-                    {/* Overlay effects */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent mix-blend-overlay" />
-                    <div
-                        className="absolute -inset-4 border border-primary/10 -z-10
-                       opacity-0 group-hover:opacity-100 transition-opacity"
-                    />
+                <div className="absolute inset-4 lg:inset-8">
+                    <div className="relative h-full w-full group">
+                        <Image
+                            src={`https://picsum.photos/200/300`}
+                            alt={project.title}
+                            fill
+                            className="object-cover rounded-sm transition-transform duration-700 will-change-transform group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                        
+                        {/* Overlay effects */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                        <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/20 transition-colors duration-700 rounded-sm" />
+                    </div>
                 </div>
             </motion.div>
         </motion.article>
@@ -123,11 +123,11 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
 const ProjectsGrid = () => {
     return (
-        <section className="relative">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <header className="text-center mb-12 sm:mb-16 space-y-4">
+        <section className="relative py-16 lg:py-24">
+            <div className="max-w-7xl mx-auto">
+                <header className="text-center mb-16 lg:mb-24 space-y-4 px-4 sm:px-6 lg:px-8">
                     <motion.span
-                        className="text-sm font-mono tracking-wider text-muted-foreground"
+                        className="text-sm font-mono tracking-wider text-muted-foreground block"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -135,7 +135,7 @@ const ProjectsGrid = () => {
                         Our Work
                     </motion.span>
                     <motion.h2
-                        className="text-4xl sm:text-5xl lg:text-7xl font-serif"
+                        className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -152,7 +152,7 @@ const ProjectsGrid = () => {
                     </motion.p>
                 </header>
 
-                <div className="space-y-16 sm:space-y-24 lg:space-y-32">
+                <div className="space-y-24 lg:space-y-40">
                     {PROJECTS.map((project) => (
                         <ProjectCard key={project.id} project={project} />
                     ))}

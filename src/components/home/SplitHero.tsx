@@ -16,14 +16,14 @@ const SplitHero = () => {
         mouseY.set(y);
     };
 
-    const rotateX = useTransform(mouseY, [-300, 300], [5, -5]);
-    const rotateY = useTransform(mouseX, [-300, 300], [-5, 5]);
+    const rotateX = useTransform(mouseY, [-300, 300], [3, -3]);
+    const rotateY = useTransform(mouseX, [-300, 300], [-3, 3]);
 
     const AnimatedLine = ({ index, mouseX }: { index: number; mouseX: MotionValue<number> }) => {
         const scaleX = useTransform(
             mouseX,
             [-300, 300],
-            [0.8 + (index % 3) * 0.1, 1.2 - (index % 3) * 0.1]
+            [0.9 + (index % 3) * 0.05, 1.1 - (index % 3) * 0.05]
         );
 
         return (
@@ -82,7 +82,7 @@ const SplitHero = () => {
                         <TextReveal delay={1}>
                             <MagneticButton
                                 className="px-6 py-3 text-sm font-mono tracking-wider border border-white/20 hover:border-white/100 transition-colors"
-                                strength={15}
+                                strength={10}
                             >
                                 View Our Work
                             </MagneticButton>
@@ -96,10 +96,10 @@ const SplitHero = () => {
                     <motion.div
                         className="absolute inset-0"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.05 }}
-                        transition={{ duration: 1, delay: 1 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1.5, delay: 1 }}
                     >
-                        {[...Array(20)].map((_, i) => (
+                        {[...Array(25)].map((_, i) => (
                             <AnimatedLine key={i} index={i} mouseX={mouseX} />
                         ))}
                     </motion.div>
@@ -121,41 +121,47 @@ const SplitHero = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, delay: 0.5 }}
                     >
-                        {[...Array(3)].map((_, i) => (
+                        {[...Array(4)].map((_, i) => (
                             <motion.div
                                 key={i}
-                                className="absolute inset-0 border border-primary/20 rounded-full"
+                                className={`absolute inset-0 border ${i === 0 ? 'border-blue-500/30' : i === 1 ? 'border-indigo-500/20' : i === 2 ? 'border-violet-500/20' : 'border-purple-500/20'} rounded-full`}
                                 initial={{ scale: 1 - i * 0.1 }}
                                 animate={{
-                                    rotate: i * 360,
-                                    scale: 1 + i * 0.1
+                                    rotate: i % 2 === 0 ? 360 : -360,
+                                    scale: [1 + i * 0.1, 1 + i * 0.15, 1 + i * 0.1]
                                 }}
                                 transition={{
-                                    duration: 20 - i * 5,
+                                    duration: 25 + i * 5,
                                     repeat: Infinity,
-                                    ease: "linear"
+                                    ease: "linear",
+                                    scale: {
+                                        duration: 8,
+                                        repeat: Infinity,
+                                        ease: "easeInOut"
+                                    }
                                 }}
                             />
                         ))}
 
                         {/* Floating particles */}
-                        {[...Array(20)].map((_, i) => (
+                        {[...Array(30)].map((_, i) => (
                             <motion.div
                                 key={`particle-${i}`}
-                                className="absolute w-1 h-1 bg-primary/30 rounded-full"
+                                className="absolute w-2 h-2 bg-primary/30 rounded-full"
                                 style={{
                                     left: `${Math.random() * 100}%`,
                                     top: `${Math.random() * 100}%`,
                                 }}
                                 animate={{
-                                    scale: [1, 1.5, 1],
+                                    scale: [1, 2, 1],
                                     opacity: [0.3, 0.6, 0.3],
-                                    y: [0, -20, 0],
+                                    y: [0, -40, 0],
                                 }}
                                 transition={{
-                                    duration: 3 + Math.random() * 2,
+                                    duration: 4 + Math.random() * 2,
                                     repeat: Infinity,
                                     delay: Math.random() * 2,
+                                    ease: "easeInOut"
                                 }}
                             />
                         ))}
