@@ -1,4 +1,5 @@
 import { Inter, Playfair_Display } from 'next/font/google';
+import { Analytics } from "@vercel/analytics/react";
 import ClientLayout from '@/components/layout/ClientLayout';
 import './globals.css'
 
@@ -24,13 +25,11 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-            {/* Adding overflow-x-hidden prevents horizontal scrolling during page transitions */}
-            {/* Adding min-h-screen ensures the page always fills the viewport height */}
-            {/* Adding antialiased improves font rendering */}
             <body className="overflow-x-hidden min-h-screen antialiased">
                 <ClientLayout>
                     {children}
                 </ClientLayout>
+                <Analytics />
             </body>
         </html>
     );
