@@ -38,47 +38,47 @@ const SplitHero = () => {
     };
 
     return (
-        <section className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
+        <section className="min-h-[100svh] grid grid-cols-1 lg:grid-cols-2">
             {/* Left: Typography */}
             <motion.div
-                className="relative flex items-center justify-center bg-black text-white p-8 lg:p-16 min-h-[60vh] lg:min-h-screen"
+                className="relative flex items-center justify-center bg-black text-white p-8 sm:p-12 lg:p-16 min-h-[60svh] lg:min-h-[100svh]"
                 onMouseMove={handleMouseMove}
                 style={{ perspective: 1000 }}
                 data-cursor-hover
             >
                 <motion.div
-                    className="relative z-10"
+                    className="relative z-10 max-w-xl mx-auto lg:mx-0"
                     style={{ rotateX, rotateY }}
                 >
                     <TextReveal delay={0.2}>
-            <span className="text-sm font-mono tracking-wider text-white/60">
-              Studio AI
-            </span>
+                        <span className="text-sm font-mono tracking-wider text-white/60">
+                            Studio AI
+                        </span>
                     </TextReveal>
 
-                    <div className="mt-4">
+                    <div className="mt-4 md:mt-6">
                         <CharacterReveal
                             text="Crafting"
-                            className="text-5xl md:text-6xl lg:text-7xl font-serif leading-[1.1]"
+                            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif leading-[1.1]"
                             delay={0.4}
                         />
                         <CharacterReveal
                             text="Intelligence"
-                            className="text-5xl md:text-6xl lg:text-7xl font-serif leading-[1.1] italic text-gradient"
+                            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif leading-[1.1] italic text-gradient"
                             delay={0.6}
                         />
                     </div>
 
-                    <div className="mt-6">
+                    <div className="mt-4 md:mt-6">
                         <TextReveal delay={0.8}>
-                            <p className="text-lg md:text-xl text-white/80 max-w-md">
+                            <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-md">
                                 We shape artificial intelligence into meaningful experiences
                                 that push the boundaries of what&apos;s possible.
                             </p>
                         </TextReveal>
                     </div>
 
-                    <div className="mt-8">
+                    <div className="mt-6 md:mt-8">
                         <TextReveal delay={1}>
                             <MagneticButton
                                 className="px-6 py-3 text-sm font-mono tracking-wider border border-white/20 hover:border-white/100 transition-colors"
@@ -107,7 +107,7 @@ const SplitHero = () => {
             </motion.div>
 
             {/* Right: Visual */}
-            <div className="relative bg-muted min-h-[40vh] lg:min-h-screen overflow-hidden">
+            <div className="relative bg-muted min-h-[40svh] lg:min-h-[100svh] overflow-hidden">
                 <motion.div
                     className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent"
                     initial={{ opacity: 0 }}
@@ -116,7 +116,7 @@ const SplitHero = () => {
                 >
                     {/* Abstract shapes */}
                     <motion.div
-                        className="absolute top-1/2 left-1/2 w-96 h-96 -translate-x-1/2 -translate-y-1/2"
+                        className="absolute top-1/2 left-1/2 w-64 sm:w-80 md:w-96 aspect-square -translate-x-1/2 -translate-y-1/2"
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, delay: 0.5 }}

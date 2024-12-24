@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { PROJECTS } from '@/constants/content';
 
-
 interface Project {
     id: string;
     title: string;
@@ -22,7 +21,6 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
     const cardRef = useRef(null);
-
     const { scrollYProgress } = useScroll({
         target: cardRef,
         offset: ["start end", "end start"]
@@ -33,7 +31,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         useTransform(
             scrollYProgress,
             [0, 1],
-            [project.alignment === 'right' ? 100 : -100, 0]
+            [project.alignment === 'right' ? 50 : -50, 0]
         ),
         springConfig
     );
@@ -47,13 +45,11 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         <motion.article
             ref={cardRef}
             style={{ x, opacity }}
-            className={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 my-32 ${
-                project.alignment === 'right' ? 'lg:ml-auto' : 'lg:mr-auto'
-            } w-11/12 max-w-6xl`}
+            className={`relative grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 w-full lg:w-11/12 max-w-6xl mx-auto`}
             data-cursor-hover
         >
-            <div className={`space-y-6 ${
-                project.alignment === 'right' ? 'lg:order-1' : 'lg:order-2'
+            <div className={`space-y-4 sm:space-y-6 ${
+                project.alignment === 'right' ? 'lg:order-1' : ''
             }`}>
                 <motion.span
                     className="text-sm font-mono tracking-wider text-muted-foreground"
@@ -65,7 +61,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                 </motion.span>
 
                 <motion.h2
-                    className="text-4xl lg:text-5xl xl:text-6xl font-serif leading-tight"
+                    className="text-3xl sm:text-4xl lg:text-5xl font-serif leading-tight"
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -74,7 +70,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                 </motion.h2>
 
                 <motion.p
-                    className="text-lg lg:text-xl text-muted-foreground max-w-md"
+                    className="text-base sm:text-lg text-muted-foreground max-w-md"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -83,20 +79,20 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                 </motion.p>
 
                 <motion.button
-                    className="group flex items-center space-x-3 text-lg"
+                    className="group flex items-center space-x-3 text-base sm:text-lg"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     whileHover={{ x: 10 }}
                 >
                     <span>View Project</span>
-                    <ArrowRight className="w-5 h-5 transform transition-transform group-hover:translate-x-2" />
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transform transition-transform group-hover:translate-x-2" />
                 </motion.button>
             </div>
 
             <motion.div
-                className={`relative aspect-[4/3] lg:aspect-auto lg:h-[70vh] ${
-                    project.alignment === 'right' ? 'lg:order-2' : 'lg:order-1'
+                className={`relative aspect-[4/3] lg:aspect-auto lg:h-[60vh] ${
+                    project.alignment === 'right' ? '' : 'lg:order-first'
                 }`}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -127,9 +123,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
 const ProjectsGrid = () => {
     return (
-        <section className="py-32 relative">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                <header className="text-center mb-24 space-y-4">
+        <section className="relative">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <header className="text-center mb-12 sm:mb-16 space-y-4">
                     <motion.span
                         className="text-sm font-mono tracking-wider text-muted-foreground"
                         initial={{ opacity: 0, y: 20 }}
@@ -139,7 +135,7 @@ const ProjectsGrid = () => {
                         Our Work
                     </motion.span>
                     <motion.h2
-                        className="text-5xl lg:text-7xl font-serif"
+                        className="text-4xl sm:text-5xl lg:text-7xl font-serif"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -147,7 +143,7 @@ const ProjectsGrid = () => {
                         The Space Between
                     </motion.h2>
                     <motion.p
-                        className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto"
+                        className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -156,7 +152,7 @@ const ProjectsGrid = () => {
                     </motion.p>
                 </header>
 
-                <div className="space-y-32 lg:space-y-48">
+                <div className="space-y-16 sm:space-y-24 lg:space-y-32">
                     {PROJECTS.map((project) => (
                         <ProjectCard key={project.id} project={project} />
                     ))}

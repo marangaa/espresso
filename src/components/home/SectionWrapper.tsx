@@ -6,14 +6,16 @@ interface SectionWrapperProps {
     className?: string;
     colorScheme?: 'light' | 'dark';
     withParallax?: boolean;
+    spacing?: 'none' | 'sm' | 'md' | 'lg';
 }
 
 const SectionWrapper = ({
-                            children,
-                            className = '',
-                            colorScheme = 'light',
-                            withParallax = true
-                        }: SectionWrapperProps) => {
+    children,
+    className = '',
+    colorScheme = 'light',
+    withParallax = true,
+    spacing = 'md'
+}: SectionWrapperProps) => {
     const { scrollYProgress } = useScroll();
 
     const springConfig = { mass: 1, stiffness: 100, damping: 30 };
@@ -23,7 +25,7 @@ const SectionWrapper = ({
     );
 
     const scale = useSpring(
-        useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 1]),
+        useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 1]),
         springConfig
     );
 
@@ -32,11 +34,19 @@ const SectionWrapper = ({
         springConfig
     );
 
+    // Responsive spacing classes
+    const spacingClasses = {
+        none: '',
+        sm: 'py-8 md:py-12',
+        md: 'py-12 md:py-16 lg:py-24',
+        lg: 'py-16 md:py-24 lg:py-32'
+    };
+
     return (
         <motion.section
             className={`relative ${
                 colorScheme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'
-            } ${className}`}
+            } ${spacingClasses[spacing]} ${className}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -45,7 +55,7 @@ const SectionWrapper = ({
             {/* Background Pattern */}
             {withParallax && (
                 <motion.div
-                    className="absolute inset-0 pointer-events-none"
+                    className="absolute inset-0 pointer-events-none opacity-50"
                     style={{ y }}
                 >
                     <svg
