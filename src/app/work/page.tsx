@@ -7,11 +7,12 @@ import Image from 'next/image';
 import { ArrowUpRight, Loader2 } from 'lucide-react';
 import type { ProjectListItem } from '@/types/project';
 
+
 function FilterButton({
-                          category,
-                          isActive,
-                          onClick
-                      }: {
+    category,
+    isActive,
+    onClick
+}: {
     category: string;
     isActive: boolean;
     onClick: () => void;
@@ -19,15 +20,22 @@ function FilterButton({
     return (
         <motion.button
             onClick={onClick}
-            className={`px-4 py-2 text-sm rounded-full transition-colors ${
-                isActive
-                    ? 'bg-black text-white'
-                    : 'text-muted-foreground hover:bg-black/5'
-            }`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="relative px-4 py-2 text-sm transition-colors"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
         >
-            {category}
+            <span className={`relative ${
+                isActive 
+                    ? 'text-black' 
+                    : 'text-muted-foreground hover:text-black'
+            }`}>
+                {category}
+            </span>
+            <span 
+                className={`absolute bottom-1 left-4 right-4 h-0.5 bg-black transition-transform duration-200 ${
+                    isActive ? 'scale-x-100' : 'scale-x-0'
+                }`} 
+            />
         </motion.button>
     );
 }
