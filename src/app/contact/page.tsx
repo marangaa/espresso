@@ -83,11 +83,11 @@ const ContactHero = () => {
                     transition={{ delay: 0.6 }}
                 >
                     <a
-                        href="mailto:hello@studioai.com"
+                        href="mailto:info@vertexai.tech"
                         className="flex items-center gap-2 text-lg hover:text-primary transition-colors cursor-pointer"
                     >
                         <Mail className="w-5 h-5 transition-transform group-hover:-translate-y-1" />
-                        hello@studioai.com
+                        info@vertexai.tech
                     </a>
 
                     <div className="flex gap-6">

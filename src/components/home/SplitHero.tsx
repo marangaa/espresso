@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { motion, useMotionValue, useTransform, MotionValue } from 'framer-motion';
 import { CharacterReveal } from '@/components/interactive/TextReveal';
@@ -52,7 +53,7 @@ const SplitHero = () => {
                 >
                     <TextReveal delay={0.2}>
                         <span className="text-sm font-mono tracking-wider text-white/60">
-                            Studio AI
+                            vertex ai
                         </span>
                     </TextReveal>
 

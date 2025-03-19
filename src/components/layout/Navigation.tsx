@@ -88,7 +88,7 @@ export default function Navigation() {
             href="/" 
             className="relative z-10 text-2xl font-serif hover:text-primary transition-colors"
           >
-            Studio AI
+            vertex ai
           </Link>
 
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
@@ -148,7 +148,7 @@ export default function Navigation() {
                     className="text-2xl font-serif text-white"
                     onClick={() => setIsOpen(false)}
                   >
-                    Studio AI
+                    vertex ai
                   </Link>
 
                   <button

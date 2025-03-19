@@ -12,8 +12,8 @@ interface Project {
 }
 
 export const SITE_CONFIG = {
-    name: 'Studio AI',
-    email: 'hello@studioai.com',
+    name: 'vertex ai',
+    email: 'info@vertexai.tech',
     location: {
         street: '44 Tehama Street',
         city: 'San Francisco, CA 94105'

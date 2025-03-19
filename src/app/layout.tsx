@@ -14,7 +14,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata = {
-    title: 'Studio AI',
+    title: 'vertex ai',
     description: 'Digital experiences crafted with intelligence',
 };
 

@@ -436,8 +436,8 @@ const ContactSection = () => {
                                 <span className="text-sm font-mono tracking-wider text-muted-foreground">
                                     Email
                                 </span>
-                                <a href="mailto:hello@studioai.com" className="block text-base sm:text-lg mt-2 hover:text-primary transition-colors">
-                                    hello@studioai.com
+                                <a href="mailto:info@vertexai.tech" className="block text-base sm:text-lg mt-2 hover:text-primary transition-colors">
+                                    info@vertexai.tech
                                 </a>
                             </HoverCard>
                         </motion.div>
