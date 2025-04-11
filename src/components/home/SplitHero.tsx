@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion, useMotionValue, useTransform, MotionValue } from 'framer-motion';
 import { CharacterReveal } from '@/components/interactive/TextReveal';
 import TextReveal from '@/components/interactive/TextReveal';
@@ -19,6 +19,20 @@ const SplitHero = () => {
 
     const rotateX = useTransform(mouseY, [-300, 300], [3, -3]);
     const rotateY = useTransform(mouseX, [-300, 300], [-3, 3]);
+
+    // Generate deterministic particle positions
+    const particles = useMemo(() => {
+        return Array.from({ length: 30 }, (_, i) => {
+            // Use a deterministic formula based on index
+            const left = `${(i * 7.3) % 100}%`;
+            const top = `${(i * 11.7) % 100}%`;
+            // Create deterministic animation duration and delay
+            const duration = 4 + (i % 4);
+            const delay = (i % 5) * 0.5;
+            
+            return { left, top, duration, delay };
+        });
+    }, []);
 
     const AnimatedLine = ({ index, mouseX }: { index: number; mouseX: MotionValue<number> }) => {
         const scaleX = useTransform(
@@ -144,14 +158,14 @@ const SplitHero = () => {
                             />
                         ))}
 
-                        {/* Floating particles */}
-                        {[...Array(30)].map((_, i) => (
+                        {/* Floating particles - Using deterministic positions */}
+                        {particles.map((particle, i) => (
                             <motion.div
                                 key={`particle-${i}`}
                                 className="absolute w-2 h-2 bg-primary/30 rounded-full"
                                 style={{
-                                    left: `${Math.random() * 100}%`,
-                                    top: `${Math.random() * 100}%`,
+                                    left: particle.left,
+                                    top: particle.top,
                                 }}
                                 animate={{
                                     scale: [1, 2, 1],
@@ -159,9 +173,9 @@ const SplitHero = () => {
                                     y: [0, -40, 0],
                                 }}
                                 transition={{
-                                    duration: 4 + Math.random() * 2,
+                                    duration: particle.duration,
                                     repeat: Infinity,
-                                    delay: Math.random() * 2,
+                                    delay: particle.delay,
                                     ease: "easeInOut"
                                 }}
                             />
